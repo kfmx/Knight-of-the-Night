@@ -15,4 +15,9 @@ public class Health : MonoBehaviour
     {
         
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        health -= other.gameObject;
+    }
 }
