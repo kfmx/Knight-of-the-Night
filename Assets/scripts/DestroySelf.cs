@@ -6,12 +6,16 @@ public class DestroySelf : MonoBehaviour
 {
     [SerializeField]
     private float time = 1;
+    [SerializeField]
+    private bool onCollision = false;
 
     void Update()
     {
-        time -= Time.deltaTime;
-        if (time <= 0) {
-            Destroy(gameObject);
+        if (!onCollision) {
+            time -= Time.deltaTime;
+            if (time <= 0) {
+                Destroy(gameObject);
+            }
         }
     }
 }

@@ -11,7 +11,7 @@ public class Bullet : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        rb.AddForce(Vector2.right * bulletSpeed, ForceMode2D.Impulse);
+        rb.AddForce(transform.right * bulletSpeed, ForceMode2D.Impulse);
     }
 
     void Update()

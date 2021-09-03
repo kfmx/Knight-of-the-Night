@@ -19,8 +19,9 @@ public class Weapon : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0)) {
-            Instantiate(bullet, firingPoint.position, Quaternion.identity, transform);
+        if (Input.GetMouseButtonDown(0) && curAmmo > 0) {
+            Instantiate(bullet, firingPoint.position, transform.rotation, transform);
+            curAmmo--;
         }
     }
 }
