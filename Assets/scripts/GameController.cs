@@ -28,6 +28,17 @@ public class GameController : MonoBehaviour
 
     public void AddAmmo(int ammo) {
         curAmmo += ammo;
-        curAmmo = Mathf.Clamp(curAmmo, 0, 20);
+        curAmmo = Mathf.Clamp(curAmmo, 0, maxAmmo);
+    }
+
+    public void AddHealth(int health)
+    {
+        curHealth += health;
+        curHealth = Mathf.Clamp(curHealth, 0, maxHealth);
+    }
+
+    public float getMaxHealth()
+    {
+        return maxHealth;
     }
 }

@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public float health = 50;
-    public float maxHealth = 100;
+    public GameController gameController;
 
     void Start()
     {
@@ -19,23 +18,12 @@ public class PlayerHealth : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.GetComponent<HealthPickup>() && health < maxHealth)
+        if(other.GetComponent<HealthPickup>() && gameController.curHealth < gameController.getMaxHealth())
         {
             HealthPickup healthPickup = other.gameObject.GetComponent<HealthPickup>();
-            setHealth(health + healthPickup.health);
+            gameController.AddHealth(healthPickup.health);
             Destroy(healthPickup.gameObject);
-            Debug.Log(health);
+            Debug.Log(gameController.curHealth);
         }
     }
-
-    void takeDamage(float damage)
-    {
-        setHealth(health - damage);
-    }
-
-    void setHealth(float health)
-    {
-        this.health = Mathf.Min(Mathf.Max(health, 0), maxHealth);
-    }
-
 }
