@@ -7,15 +7,23 @@ public class DestroySelf : MonoBehaviour
     [SerializeField]
     private float time = 1;
     [SerializeField]
-    private bool onCollision = false;
+    private bool useCollision = false;
+    [SerializeField]
+    private LayerMask onCollisionWith;
 
     void Update()
     {
-        if (!onCollision) {
+        if (!useCollision) {
             time -= Time.deltaTime;
             if (time <= 0) {
                 Destroy(gameObject);
             }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision) {
+        if (onCollisionWith == (onCollisionWith | (1 << collision.gameObject.layer))) {
+            Destroy(gameObject);
         }
     }
 }
