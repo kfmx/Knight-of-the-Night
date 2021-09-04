@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -15,18 +16,27 @@ public class GameController : MonoBehaviour
     private int maxTorches = 5;
     [SerializeField]
     private TextMeshProUGUI ammoText;
+    [SerializeField]
+    private TextMeshProUGUI healthText;
+    [SerializeField]
+    private TextMeshProUGUI torchesText;
     private float iFrames;
 
     void Start()
     {
-        
+        curHealth = maxHealth;
     }
 
     void Update()
     {
-        Debug.Log(curAmmo);
+        ammoText.text = "Ammo: " + curAmmo.ToString() + "/" + maxAmmo.ToString();
+        healthText.text = "Health: " + curHealth.ToString() + "/" + maxHealth.ToString();
+        torchesText.text = "Torches: " + curTorches.ToString() + "/" + maxTorches.ToString();
         iFrames -= Time.deltaTime;
-        //ammoText.text = "Ammo: " + curAmmo.ToString() + "/" + maxAmmo.ToString();
+        if (curHealth <= 0)
+        {
+            SceneManager.LoadScene(sceneName: "endScreen");
+        }
     }
 
     public void AddAmmo(int ammo) {
@@ -48,6 +58,11 @@ public class GameController : MonoBehaviour
             curHealth = Mathf.Clamp(curHealth, 0, maxHealth);
             iFrames = .5f;
         }
+    }
+
+    public void AddTorch(int torches) {
+        curTorches += torches;
+        curTorches = Mathf.Clamp(curTorches, 0, maxTorches);
     }
 
     public float getMaxHealth()

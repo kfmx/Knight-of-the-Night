@@ -9,6 +9,8 @@ public class Weapon : MonoBehaviour
     [SerializeField]
     private Transform firingPoint;
     [SerializeField]
+    private GameObject torch;
+    [SerializeField]
     private GameController gameController;
 
     void Start()
@@ -21,6 +23,11 @@ public class Weapon : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && gameController.curAmmo > 0) {
             Instantiate(bullet, firingPoint.position, transform.rotation, transform);
             gameController.curAmmo--;
+        }
+
+        if (Input.GetKeyDown(KeyCode.F) && gameController.curTorches > 0) {
+            Instantiate(torch, transform.position, Quaternion.identity);
+            gameController.curTorches--;
         }
     }
 }

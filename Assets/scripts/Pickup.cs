@@ -18,10 +18,13 @@ public class Pickup : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision) {
         string layerName = LayerMask.LayerToName(collision.gameObject.layer);
-
+        Debug.Log(layerName);
         switch(layerName) {
             case "Ammo":
                 gameController.AddAmmo(200);
+                break;
+            case "Torch":
+                gameController.AddTorch(1);
                 break;
         }
     }
