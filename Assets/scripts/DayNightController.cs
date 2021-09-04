@@ -33,6 +33,7 @@ public class DayNightController : MonoBehaviour
         nightCO = NightCO();
 
         if (isNight) SetNight();
+        else SetDay();
     }
 
     void Update()
