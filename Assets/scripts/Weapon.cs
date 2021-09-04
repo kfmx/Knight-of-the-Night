@@ -9,8 +9,7 @@ public class Weapon : MonoBehaviour
     [SerializeField]
     private Transform firingPoint;
     [SerializeField]
-    private int maxAmmo = 20;
-    private int curAmmo = 20;
+    private GameController gameController;
 
     void Start()
     {
@@ -19,9 +18,9 @@ public class Weapon : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && curAmmo > 0) {
+        if (Input.GetMouseButtonDown(0) && gameController.curAmmo > 0) {
             Instantiate(bullet, firingPoint.position, transform.rotation, transform);
-            curAmmo--;
+            gameController.curAmmo--;
         }
     }
 }

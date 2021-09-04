@@ -2,16 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Health : MonoBehaviour
+public class HealthPickup : MonoBehaviour
 {
-    public float health = 100;
     private float iFrames;
 
+    public int health = 10;
+    // Start is called before the first frame update
     void Start()
     {
         
     }
 
+    // Update is called once per frame
     void Update()
     {
         iFrames -= Time.deltaTime;
