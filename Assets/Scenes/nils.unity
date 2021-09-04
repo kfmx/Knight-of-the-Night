@@ -1259,7 +1259,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1812221495}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.16, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1812246411}
@@ -1456,8 +1456,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a00cab2dacbcac44b65947bf3786c79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dayDuration: 5
-  nightDuration: 5
+  dayDuration: 2
+  nightDuration: 2
   isNight: 1
   globalLight: {fileID: 1584926223}
   playerLight: {fileID: 1812221496}
