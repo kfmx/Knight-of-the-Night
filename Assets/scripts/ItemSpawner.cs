@@ -7,19 +7,25 @@ public class ItemSpawner : MonoBehaviour
     public float spawnRadius = 10;
     public List<Item> items = new List<Item>();
 
-    bool day = true;
+    public GameController gameController;
+
     bool itemsSpawned = false;
     void Start()
     {
-        if(day == false) {
-            itemsSpawned = false;
-        }
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(itemsSpawned == false && day)
+        DayNightController dayNightController = gameController.GetComponent<DayNightController>();
+
+        if(dayNightController.isNight)
+        {
+            itemsSpawned = false;
+        }
+
+        if(itemsSpawned == false && dayNightController.isNight == false)
         {
             for (int i = 0; i < items.Count; i++)
             {

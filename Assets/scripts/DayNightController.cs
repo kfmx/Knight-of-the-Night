@@ -12,6 +12,7 @@ public class DayNightController : MonoBehaviour
     private float nightDuration = 60;
     private float curDuration = 0;
     public bool isNight = false;
+    private int dayCounter = 1;
 
     [SerializeField]
     private Light2D globalLight;
@@ -38,7 +39,6 @@ public class DayNightController : MonoBehaviour
 
     void Update()
     {
-        dayNightText.text = (isNight ? "Night: " + Mathf.RoundToInt(nightDuration - curDuration) : "Day: " + Mathf.RoundToInt(dayDuration - curDuration));
         
         curDuration += Time.deltaTime;
 
@@ -47,10 +47,13 @@ public class DayNightController : MonoBehaviour
             else SetNight();
             curDuration = 0;
         }
+        dayNightText.text = (isNight ? "Night: " + Mathf.RoundToInt(nightDuration - curDuration) : "Day: " + Mathf.RoundToInt(dayDuration - curDuration));
+
     }
 
     public void SetDay() {
         isNight = false;
+        dayCounter++;
         dayNightText.color = dayColor;
         StopCoroutine(nightCO);
         dayCO = DayCO();
@@ -64,6 +67,10 @@ public class DayNightController : MonoBehaviour
         StartCoroutine(nightCO);
     }
 
+    public int GetDayCounter()
+    {
+        return dayCounter;
+    }
 
     private IEnumerator DayCO() {
         while (curIntensity < 1) {

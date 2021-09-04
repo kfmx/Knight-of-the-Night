@@ -5,4 +5,16 @@ using UnityEngine;
 public class EnemyMain : MonoBehaviour
 {
     public Rigidbody2D mine;
+    private EnemyHelath hp;
+
+    private void Start()
+    {
+        hp = GetComponent<EnemyHelath>();
+        gameObject.transform.position = new Vector3(Random.Range(10, 20), Random.Range(10, 20));
+    }
+
+    public void TakeDamage(float dmg)
+    {
+        hp.TakeDamage(dmg);
+    }
 }

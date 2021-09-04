@@ -21,7 +21,6 @@ public class EnemyPathFinding : MonoBehaviour
     private void Update()
     {
         pathFindingTimer -= Time.deltaTime;
-
         HandleMovement();
     }
 
@@ -48,8 +47,12 @@ public class EnemyPathFinding : MonoBehaviour
         currentPathIndex = 0;
 
         pathVectorList = FindPath(GetPosition(), targetPosition);
+        pathFindingTimer = .2f;
 
-        pathFindingTimer = 0.1f;
+        if (pathVectorList != null && pathVectorList.Count > 1)
+        {
+            pathVectorList.RemoveAt(0);
+        }
     }
 
     public void StopMoving()
@@ -68,13 +71,12 @@ public class EnemyPathFinding : MonoBehaviour
             {
                 moveDir = (targetPosition - GetPosition()).normalized;
                 lastMoveDir = moveDir;
-                if (currentPathIndex < pathVectorList.Count-1)
-                {
-                    currentPathIndex++;
-                }
             } else
             {
-                StopMoving();
+                currentPathIndex++;
+                if (currentPathIndex >= pathVectorList.Count) {
+                    StopMoving();
+                }
             }   
         }
     }
@@ -85,7 +87,7 @@ public class EnemyPathFinding : MonoBehaviour
         Vector3 currentPos = GetPosition();
         Vector3 moveDir = (targetPos - currentPos).normalized;
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 100; i++) {
             
             newList.Add(new Vector3(currentPos.x + moveDir.x * i+1, currentPos.y + moveDir.y * i+1));
         }
