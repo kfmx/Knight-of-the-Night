@@ -234,9 +234,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04fd481f3daf7e646b40da09c376d87b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnRadius: 10
+  spawnRadius: 40
   items:
   - item: {fileID: 7197704653595135748, guid: 2407cc532763aaa4e83c3c797a2468fe, type: 3}
+    spawnCount: 100
+  - item: {fileID: 2571154366490326974, guid: effb3af841f5caf45a9f40e9c7b62013, type: 3}
     spawnCount: 100
 --- !u!4 &722303872
 Transform:
