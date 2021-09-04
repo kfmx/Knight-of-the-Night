@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -18,16 +19,32 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
-        
+        curHealth = maxHealth;
     }
 
     void Update()
     {
         ammoText.text = "Ammo: " + curAmmo.ToString() + "/" + maxAmmo.ToString();
+
+        if(curHealth <= 0)
+        {
+            SceneManager.LoadScene(sceneName: "endScreen");
+        }
     }
 
     public void AddAmmo(int ammo) {
         curAmmo += ammo;
-        curAmmo = Mathf.Clamp(curAmmo, 0, 20);
+        curAmmo = Mathf.Clamp(curAmmo, 0, maxAmmo);
+    }
+
+    public void AddHealth(int health)
+    {
+        curHealth += health;
+        curHealth = Mathf.Clamp(curHealth, 0, maxHealth);
+    }
+
+    public float getMaxHealth()
+    {
+        return maxHealth;
     }
 }
