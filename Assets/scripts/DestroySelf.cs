@@ -10,7 +10,6 @@ public class DestroySelf : MonoBehaviour
     private bool useCollision = false;
     [SerializeField]
     private LayerMask onCollisionWith;
-    private bool onCollision = false;
     private BoxCollider2D cl2;
 
     private void Start()
