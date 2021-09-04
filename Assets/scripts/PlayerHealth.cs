@@ -23,7 +23,6 @@ public class PlayerHealth : MonoBehaviour
             HealthPickup healthPickup = other.gameObject.GetComponent<HealthPickup>();
             gameController.AddHealth(healthPickup.health);
             Destroy(healthPickup.gameObject);
-            Debug.Log(gameController.curHealth);
         }
     }
 }
