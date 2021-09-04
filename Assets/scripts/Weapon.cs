@@ -10,7 +10,7 @@ public class Weapon : MonoBehaviour
     private Transform firingPoint;
     [SerializeField]
     private int maxAmmo = 20;
-    private int curAmmo = 0;
+    private int curAmmo = 20;
 
     void Start()
     {
