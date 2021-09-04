@@ -5,11 +5,11 @@ using UnityEngine;
 public class EnemyMain : MonoBehaviour
 {
     public Rigidbody2D mine;
-    private Health hp;
+    private EnemyHelath hp;
 
     private void Start()
     {
-        hp = GetComponent<Health>();
+        hp = GetComponent<EnemyHelath>();
     }
 
     public void TakeDamage(float dmg)

@@ -6,18 +6,23 @@ public class Player : MonoBehaviour
 {
     public static Player Instance { get; private set; }
     private BoxCollider2D cl2;
-    private Health hp;
+    private PlayerHealth hp;
 
     void Start()
     {
         cl2 = GetComponent<BoxCollider2D>();
-        hp = GetComponent<Health>();
+        hp = GetComponent<PlayerHealth>();
         Instance = this;
+    }
+
+    private void Update()
+    {
+        
     }
 
     public void TakeDamage(float DamageTaken)
     {
-        hp.TakeDamage(DamageTaken);
+        hp.TakeDamage((int)DamageTaken);
     }
 
     public BoxCollider2D GetCollider()
