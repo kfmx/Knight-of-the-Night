@@ -34,21 +34,26 @@ public class PlayerMovement : MonoBehaviour
 
     void move()
     {
+        
         if (Input.GetKey("a"))
         {
-            rigidbody.AddForce(new Vector2(-speed, 0));
+            float angle = 180;
+            rigidbody.AddForce(new Vector2(Mathf.Cos(angle) * speed, Mathf.Sin(angle) * speed));
         }
         if (Input.GetKey("d"))
         {
-            rigidbody.AddForce(new Vector2(speed, 0));
+            float angle = 0;
+            rigidbody.AddForce(new Vector2(Mathf.Cos(angle) * speed, Mathf.Sin(angle) * speed));
         }
         if (Input.GetKey("w"))
         {
-            rigidbody.AddForce(new Vector2(0, speed));
+            float angle = -90;
+            rigidbody.AddForce(new Vector2(Mathf.Cos(angle) * speed, Mathf.Sin(angle) * speed));
         }
         if (Input.GetKey("s"))
         {
-            rigidbody.AddForce(new Vector2(0, -speed));
+            float angle = 90;
+            rigidbody.AddForce(new Vector2(Mathf.Cos(angle) * speed, Mathf.Sin(angle) * speed));
         }
     }
 }
