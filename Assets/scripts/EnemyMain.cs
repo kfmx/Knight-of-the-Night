@@ -10,7 +10,7 @@ public class EnemyMain : MonoBehaviour
     private void Start()
     {
         hp = GetComponent<EnemyHelath>();
-        gameObject.transform.position = new Vector3(Random.Range(10, 20), Random.Range(10, 20));
+        gameObject.transform.position = new Vector3(Random.Range(-200, 200), Random.Range(-200, 200));
     }
 
     public void TakeDamage(float dmg)

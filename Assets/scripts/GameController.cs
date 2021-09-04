@@ -7,7 +7,11 @@ using UnityEngine.SceneManagement;
 public class GameController : MonoBehaviour
 {
     [HideInInspector]
-    public int curAmmo, curHealth, curTorches = 0;
+    public int curAmmo = 0;
+    [HideInInspector]
+    public int curHealth = 0;
+    [HideInInspector]
+    public int curTorches = 1;
     [SerializeField]
     private int maxAmmo = 20;
     [SerializeField]
