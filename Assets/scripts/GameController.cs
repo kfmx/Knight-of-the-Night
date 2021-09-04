@@ -29,14 +29,16 @@ public class GameController : MonoBehaviour
 
     void Update()
     {
-        ammoText.text = "Ammo: " + curAmmo.ToString() + "/" + maxAmmo.ToString();
-        healthText.text = "Health: " + curHealth.ToString() + "/" + maxHealth.ToString();
-        torchesText.text = "Torches: " + curTorches.ToString() + "/" + maxTorches.ToString();
         iFrames -= Time.deltaTime;
         if (curHealth <= 0)
         {
             SceneManager.LoadScene(sceneName: "endScreen");
         }
+        ammoText.text = "Ammo: " + curAmmo.ToString() + "/" + maxAmmo.ToString();
+        healthText.text = "Health: " + curHealth.ToString() + "/" + maxHealth.ToString();
+        torchesText.text = "Torches: " + curTorches.ToString() + "/" + maxTorches.ToString();
+        Debug.Log(iFrames);
+        
     }
 
     public void AddAmmo(int ammo) {
@@ -56,6 +58,7 @@ public class GameController : MonoBehaviour
         {
             curHealth -= health;
             curHealth = Mathf.Clamp(curHealth, 0, maxHealth);
+            Debug.Log(curHealth);
             iFrames = .5f;
         }
     }
