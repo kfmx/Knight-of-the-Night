@@ -13,7 +13,10 @@ public class PlayerHealth : MonoBehaviour
 
     void Update()
     {
-        
+        if (gameController.GetHealth() <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -24,5 +27,10 @@ public class PlayerHealth : MonoBehaviour
             gameController.AddHealth(healthPickup.health);
             Destroy(healthPickup.gameObject);
         }
+    }
+
+    public void TakeDamage(int dmg)
+    {
+        gameController.RemoveHealth(dmg);
     }
 }
