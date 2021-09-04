@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering.Universal;
+using TMPro;
 
 public class DayNightController : MonoBehaviour
 {
@@ -20,6 +21,13 @@ public class DayNightController : MonoBehaviour
     private IEnumerator nightCO;
     private float curIntensity = 1;
 
+    [SerializeField]
+    private TextMeshProUGUI dayNightText;
+    [SerializeField]
+    private Color32 dayColor;
+    [SerializeField]
+    private Color32 nightColor;
+
     void Start() {
         dayCO = DayCO();
         nightCO = NightCO();
@@ -29,6 +37,8 @@ public class DayNightController : MonoBehaviour
 
     void Update()
     {
+        dayNightText.text = (isNight ? "Night: " + Mathf.RoundToInt(nightDuration - curDuration) : "Day: " + Mathf.RoundToInt(dayDuration - curDuration));
+        
         curDuration += Time.deltaTime;
 
         if (curDuration >= (isNight ? nightDuration : dayDuration)) {
@@ -40,12 +50,14 @@ public class DayNightController : MonoBehaviour
 
     public void SetDay() {
         isNight = false;
+        dayNightText.color = dayColor;
         StopCoroutine(nightCO);
         dayCO = DayCO();
         StartCoroutine(dayCO);
     }
     public void SetNight() {
         isNight = true;
+        dayNightText.color = nightColor;
         StopCoroutine(dayCO);
         nightCO = NightCO();
         StartCoroutine(nightCO);

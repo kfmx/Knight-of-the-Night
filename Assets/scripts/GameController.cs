@@ -16,6 +16,10 @@ public class GameController : MonoBehaviour
     private int maxTorches = 5;
     [SerializeField]
     private TextMeshProUGUI ammoText;
+    [SerializeField]
+    private TextMeshProUGUI healthText;
+    [SerializeField]
+    private TextMeshProUGUI torchesText;
 
     void Start()
     {
@@ -25,6 +29,8 @@ public class GameController : MonoBehaviour
     void Update()
     {
         ammoText.text = "Ammo: " + curAmmo.ToString() + "/" + maxAmmo.ToString();
+        healthText.text = "Health: " + curHealth.ToString() + "/" + maxHealth.ToString();
+        torchesText.text = "Torches: " + curTorches.ToString() + "/" + maxTorches.ToString();
 
         if(curHealth <= 0)
         {
@@ -41,6 +47,11 @@ public class GameController : MonoBehaviour
     {
         curHealth += health;
         curHealth = Mathf.Clamp(curHealth, 0, maxHealth);
+    }
+
+    public void AddTorch(int torches) {
+        curTorches += torches;
+        curTorches = Mathf.Clamp(curTorches, 0, maxTorches);
     }
 
     public float getMaxHealth()
