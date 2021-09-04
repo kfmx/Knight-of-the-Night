@@ -37,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
         
         if (Input.GetKey("a"))
         {
-            float angle = 180;
+            float angle = Mathf.PI;
             rigidbody.AddForce(new Vector2(Mathf.Cos(angle) * speed, Mathf.Sin(angle) * speed));
         }
         if (Input.GetKey("d"))
@@ -47,12 +47,12 @@ public class PlayerMovement : MonoBehaviour
         }
         if (Input.GetKey("w"))
         {
-            float angle = -90;
+            float angle = Mathf.PI / 2;
             rigidbody.AddForce(new Vector2(Mathf.Cos(angle) * speed, Mathf.Sin(angle) * speed));
         }
         if (Input.GetKey("s"))
         {
-            float angle = 90;
+            float angle = -Mathf.PI / 2;
             rigidbody.AddForce(new Vector2(Mathf.Cos(angle) * speed, Mathf.Sin(angle) * speed));
         }
     }
