@@ -15,6 +15,7 @@ public class Enemy : MonoBehaviour
     private Vector3 startingPostition;
     private State state;
     private BoxCollider2D cl2;
+    private GameObject targetedTorch;
 
     private void Awake()
     {
@@ -28,13 +29,29 @@ public class Enemy : MonoBehaviour
     }
     private void Update()
     {
+        GameObject[] torches = GameObject.FindGameObjectsWithTag("Torch");
+        if (targetedTorch == null) state = State.ChasePlayer;
+        for (int i = 0; i < torches.Length; i++)
+        {
+            if (Vector3.Distance(gameObject.transform.position, torches[i].transform.position) < 5f)
+            {
+                state = State.DestroyLight;
+                targetedTorch = torches[i];
+                break;
+            } else
+            {
+                state = State.ChasePlayer;
+            }
+        }
+
         switch(state)
         {
             case State.ChasePlayer:
                 pathFinding.MoveToTimer(Player.Instance.GetPosition());
+
                 break;
             case State.DestroyLight:
-                //Implement later
+                pathFinding.MoveToTimer(targetedTorch.transform.position);
                 break;
             default:
                 break;
@@ -46,10 +63,18 @@ public class Enemy : MonoBehaviour
     {
         if (cl2.IsTouching(Player.Instance.GetCollider())) {
             DealDamage(10);
+        } else if (targetedTorch != null)
+        {
+            DealDamageToTorch();
         }
     }
     public void DealDamage(float dmg)
     {
         Player.Instance.TakeDamage(dmg);
+    }
+
+    public void DealDamageToTorch()
+    {
+        targetedTorch.GetComponent<TorchHealth>().TakeDamage(10);
     }
 }
